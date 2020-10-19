@@ -12,16 +12,10 @@ let package = Package(
         .watchOS(.v6)
     ],
     products: [
-        .library(
-            name: "SwiftUIRedux",
-            targets: ["SwiftUIRedux"]),
+        .library(name: "SwiftUIRedux", targets: ["SwiftUIRedux"]),
     ],
     targets: [
-        .target(
-            name: "SwiftUIRedux",
-            dependencies: []),
-        .testTarget(
-            name: "SwiftUIReduxTests",
-            dependencies: ["SwiftUIRedux"]),
+        .target(name: "SwiftUIRedux", dependencies: []),
+        .testTarget(name: "SwiftUIReduxTests", dependencies: ["SwiftUIRedux"]),
     ]
 )
