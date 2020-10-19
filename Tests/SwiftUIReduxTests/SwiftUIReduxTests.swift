@@ -2,14 +2,49 @@ import XCTest
 @testable import SwiftUIRedux
 
 final class SwiftUIReduxTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SwiftUIRedux().text, "Hello, World!")
+    
+    var store: Store<TestState>!
+    
+    override func setUp() {
+        super.setUp()
+        store = Store<TestState>(initialState: TestState(), reducer: testReducer)
     }
+    
+    override func tearDown() {
+        store = nil
+        super.tearDown()
+    }
+    
+    func testStore_initCorrectly() {
+        XCTAssertEqual(store.state.count, 0)
+    }
+    
+    func testStore_whenDispatchedSyncAction_stateChangedAsExpected() {
+        // when
+        store.dispatch(action: TestAction.increment)
+        
+        // then
+        XCTAssertEqual(self.store.state.count, 1)
+    }
+    
+    func testStore_whenDispatchedAsyncAction_stateChangedAsExpected() {
+        // given
+        let queue = DispatchQueue(label: "AsyncAction")
 
+        // when
+        queue.sync {
+            store.dispatch(action: TestAsyncAction.asyncIncrement)
+        }
+
+        // then
+        queue.asyncAfter(deadline: .now() + 2, execute: {
+            XCTAssertEqual(self.store.state.count, 1)
+        })
+    }
+    
     static var allTests = [
-        ("testExample", testExample),
+        ("testStore_initCorrectly", testStore_initCorrectly),
+        ("testStore_whenDispatchedSyncAction_stateChangedAsExpected", testStore_whenDispatchedSyncAction_stateChangedAsExpected),
+        ("testStore_whenDispatchedAsyncAction_stateChangedAsExpected", testStore_whenDispatchedAsyncAction_stateChangedAsExpected),
     ]
 }
