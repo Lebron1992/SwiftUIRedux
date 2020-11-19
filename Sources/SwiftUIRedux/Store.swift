@@ -8,7 +8,7 @@ public final class Store<S: State>: ObservableObject {
     private let reducer: Reducer<S>
     private var dispatch: Dispatch!
     
-    init(
+    public init(
         initialState: S,
         reducer: @escaping Reducer<S>,
         middlewares: [Middleware] = [asyncActionMiddleware],
