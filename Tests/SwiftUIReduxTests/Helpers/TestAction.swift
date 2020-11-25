@@ -8,7 +8,7 @@ enum TestAction: Action {
 enum TestAsyncAction: AsyncAction {
     case asyncIncrement
     
-    func async(dispatch: @escaping (Action) -> Void, state: State?) {
+    func async(dispatch: @escaping (Action) -> Void, state: ReduxState?) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             dispatch(TestAction.increment)
         }

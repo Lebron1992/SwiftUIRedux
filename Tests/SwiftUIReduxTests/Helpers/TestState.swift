@@ -1,5 +1,5 @@
 @testable import SwiftUIRedux
 
-struct TestState: State {
+struct TestState: ReduxState {
     var count = 0
 }

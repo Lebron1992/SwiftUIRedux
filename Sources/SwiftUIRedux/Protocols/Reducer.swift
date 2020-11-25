@@ -1,4 +1,4 @@
-public typealias Reducer<S: State> = (
+public typealias Reducer<S: ReduxState> = (
     _ state: S,
     _ action: Action,
     _ environment: Environment?

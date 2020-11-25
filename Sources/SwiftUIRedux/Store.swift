@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-public final class Store<S: State>: ObservableObject {
+public final class Store<S: ReduxState>: ObservableObject {
    @Published public private(set) var state: S
     
     private let environment: Environment?
