@@ -1,6 +1,6 @@
 @testable import SwiftUIRedux
 
-func testReducer(_ state: TestState, _ action: Action, _ environment: Environment? = nil) -> TestState {
+func testReducer(_ state: TestState, _ action: Action) -> TestState {
     guard let action = action as? TestAction else {
         return state
     }
