@@ -10,7 +10,7 @@ public protocol ConnectedView: View {
 }
 
 extension ConnectedView {
-    private func render(state: StoreState, dispatch: Dispatch) -> V {
+  private func render(state: StoreState, dispatch: @escaping Dispatch) -> V {
         let props = map(state: state, dispatch: dispatch)
         return body(props: props)
     }
