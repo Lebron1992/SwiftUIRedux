@@ -5,7 +5,7 @@ public protocol ConnectedView: View {
     associatedtype Props
     associatedtype V: View
     
-    func map(state: StoreState, dispatch: Dispatch) -> Props
+    func map(state: StoreState, dispatch: @escaping Dispatch) -> Props
     func body(props: Props) -> V
 }
 
