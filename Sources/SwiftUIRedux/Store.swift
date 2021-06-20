@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-public class Store<S: ReduxState>: ObservableObject {
+open class Store<S: ReduxState>: ObservableObject {
    @Published public private(set) var state: S
     
     private let reducer: Reducer<S>
